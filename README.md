@@ -10,9 +10,7 @@ Customer controller now just has a form which demonstrates these arrangement. Wh
 
 Notification system implemented using SignalR Core
 
-Technologies:
-Entity Framework Core, 
-Asp.Net Core MVC
+Used C# with Entity Framework Core and Asp.Net Core MVC
 
 Note: This is a school project
 Use your own appsettings.json
