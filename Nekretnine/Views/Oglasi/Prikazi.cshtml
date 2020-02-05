@@ -1,0 +1,101 @@
+﻿@using Nekretnine.Web.ViewModels
+@using Nekretnine.Web
+@model OglasiPrikazVM
+@{
+    ViewData["Title"] = "Oglasi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+
+    <div class="container-fluid">
+
+        <a class="btn btn-info" asp-action="DodajIznova" asp-controller="Oglasi"><i class="fa fa-plus"></i> Novi unos</a>
+        <br />
+        <br />
+        @if (Model.rows.Count() == 0)
+        {
+            <div class="text-center">
+                <p>Nemate oglasa</p><br />
+                <a asp-action="Index" asp-controller="Home">Vrati se nazad</a>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+
+                @foreach (var x in Model.rows)
+                {
+
+
+
+                <div class="col-lg-6">
+
+
+                    @if (x.Aktivan == false)
+                    {
+                    <div class="card mb-4 py-3 border-bottom-dark bg-light">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <i class="fa fa-house-damage"></i>
+                                    <h5 class="card-title text-gray-700">@x.Nekretnina <span class="badge badge-success">@x.Cijena</span> KM</h5>
+                                    <h6 class="card-subtitle mb-3 text-muted text-gray-500">
+                                        @x.vrstaOglasa
+                                    </h6>
+                                    <div style="overflow:hidden; height:50px">
+                                        <p class="card-text text-gray-400">@x.Opis</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="~/img/@(x.SlikaID + x.Ekstenzija)" class="rounded" style="width:100%; height:11.5rem" />
+
+                                </div>
+                            </div>
+                            <a class="btn btn-danger" asp-action="Obrisi" asp-route-OglasID="@x.OglasID">Obriši</a>
+                            <a class="btn btn-info" asp-action="Detalji" asp-route-OglasID="@x.OglasID">Detalji</a>
+                            <p class="card-text text-gray-500"><small class="text-muted">@x.DatumVrijemeObjave , @x.Uposlenik</small></p>
+
+                        </div>
+                        </div>
+                        }
+                        else
+                        {
+                        <div class="card mb-4 py-3 border-bottom-info">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-house-damage"></i>
+                                        <h5 class="card-title text-gray-700">@x.Nekretnina <span class="badge badge-success">@x.Cijena</span> KM</h5>
+                                        <h6 class="card-subtitle mb-3 text-muted text-gray-500">
+                                            @x.vrstaOglasa
+                                        </h6>
+                                        <div style="overflow:hidden; height:50px">
+                                            <p class="card-text text-gray-400">@x.Opis</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <img src="~/img/@(x.SlikaID + x.Ekstenzija)" class="rounded" style="width:100%; height:11.5rem" />
+
+                                    </div>
+                                </div>
+                                <a class="btn btn-danger" asp-action="Obrisi" asp-route-OglasID="@x.OglasID">Obriši</a>
+                                <a class="btn btn-info" asp-action="Detalji" asp-route-OglasID="@x.OglasID">Detalji</a>
+                                <p class="card-text text-gray-500"><small class="text-muted">@x.DatumVrijemeObjave , @x.Uposlenik</small></p>
+
+                            </div>
+                            </div>
+                            }
+                        </div>
+                    
+
+
+
+
+                }
+
+
+            </div>
+        }
+    </div>

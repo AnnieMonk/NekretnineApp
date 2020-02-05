@@ -1,0 +1,47 @@
+﻿@using Nekretnine.Web.ViewModels
+@model NotifikacijaDetaljiVM
+
+    <div class="container-fluid">
+        <a href="javascript:history.go(-1)" class="btn btn-danger"><i class="fa fa-arrow-left" data-toggle="tooltip" data-placement="top" title="Vrati se nazad"></i></a>
+
+        <div class="row justify-content-center">
+
+            <div class="form-group col-md-6">
+
+                <div class="form-group">
+                    <label>Kupac: </label>
+                    <input asp-for="@Model.KupacNaziv" class="form-control" readonly /><br />
+                </div>
+
+                <div class="form-group">
+                    <label>Nekretnina: </label>
+                    <input asp-for="@Model.NekretninaNaziv" class="form-control" readonly /><br />
+                </div>
+
+                <div class="form-group">
+                    <label>Grad: </label>
+                    <input asp-for="@Model.Grad" class="form-control" readonly /><br />
+                </div>
+                <div class="form-group">
+                    <label>Adresa nalaženja:</label>
+                    <input type="text" name="" data-recordid="@Model.ObilazakID" value="@Model.Adresa" class="ajaxAdresa form-control" data-toggle="tooltip" data-placement="top" title="Za promjenu adrese samo unesite novu" /><br />
+                    <span asp-validation-for="Adresa" class="text-danger field-validation-error"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Datum i vrijeme nalaženja: </label>
+                    <input type="datetime" name="" data-recordid="@Model.ObilazakID" value="@Model.startVrijeme" class="ajaxDatum form-control" data-toggle="tooltip" data-placement="top" title="Za promjenu datuma i vremena samo unesite novi/o" />
+                    <span asp-validation-for="startVrijeme" class="text-danger field-validation-error"></span>
+
+                </div>    
+                    <br />
+                    <a asp-action="PromijeniUProcitano" asp-route-NotifikacijaID="@Model.NotifikacijaID" class="btn btn-success"><i class="fa fa-check"></i></a>
+
+                </div>
+            </div>
+
+
+
+    </div>
+

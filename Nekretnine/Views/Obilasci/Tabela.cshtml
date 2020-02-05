@@ -1,0 +1,77 @@
+﻿@using Nekretnine.Web.ViewModels
+@model ObilasciPrikazVM
+@{
+    ViewData["Title"] = "Tabela";
+    Layout = null;
+
+}
+
+@if (Model.BrojNeprocitanih > 0)
+{
+    <div class="alert alert-warning" role="alert">
+        Imate @Model.BrojNeprocitanih nepregledanih zahtjeva za obilazak! <a href="/Notifikacija/Index" class="alert-link">Vidi</a>
+    </div>
+}
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-gradient-primary">
+        <h6 class="m-0 font-weight-bold text-white ">Raspored obilazaka</h6>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                <thead>
+                    <tr>
+                        <th>Datum i vrijeme start</th>
+                        <th>Datum i vrijeme end</th>
+                        <th>Nekretnina</th>
+                        <th>Adresa nalaženja</th>
+                        <th>Kupac</th>
+                        <th>Završeno</th>
+                        <th>Otkazano</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Nekretnine.Web.ViewModels.ObilasciPrikazVM.Row x in Model.rows)
+                    {
+                        <tr>
+                            <td>@x.DatumVrijemeStart</td>
+                            <td>@x.DatumVrijemeEnd</td>
+                            <td>@x.Nekretnina</td>
+                            <td>@x.LokacijaAdresa, @x.Grad</td>
+                            <td>@x.Kupac</td>
+
+
+                            @if ((x.Otkazano == true && x.Zavrseno == false) || (x.Zavrseno == true))
+                            {
+                                <td>
+                                    <div class="btn btn-light disabled">@(x.Zavrseno ? "DA" : "NE")</div>
+                                </td>
+                                <td>
+                                    <div class="btn btn-light disabled">@(x.Otkazano ? "DA" : "NE")</div>
+                                </td>
+                            }
+
+                            else
+                            {
+                                <td>
+
+                                    <a href="/Obilasci/ZavrsenoMijenjaj?ObilazakID=@x.ObilazakID" class="btn btn-primary" ajax-poziv="da" ajax-rezultat="rezultatTabele">@(x.Zavrseno ? "DA" : "NE")</a>
+                                </td>
+                                <td>
+                                    <a href="/Obilasci/OtkazanoMijenjaj?ObilazakID=@x.ObilazakID" class="btn btn-primary" ajax-poziv="da" ajax-rezultat="rezultatTabele">@(x.Otkazano ? "DA" : "NE")</a>
+                                </td>
+                            }
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+

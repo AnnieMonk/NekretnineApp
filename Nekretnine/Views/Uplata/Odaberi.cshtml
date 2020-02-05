@@ -1,0 +1,27 @@
+﻿@using Nekretnine.Web.ViewModels
+@model  UplataOdaberiVM
+@{ 
+    ViewData["Title"] = "Index";
+}
+	<div id="uplataModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					
+				
+				</div>
+				<form asp-action="IndexUplate">
+					<div class="modal-body">
+
+						
+						<select asp-for="KupacID" asp-items="@Model.Kupci" class="form-control"></select>
+					</div>
+					<div class="modal-footer">
+						<input type="submit" value="Odaberi" class="btn btn-danger" />
+							
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,70 @@
+﻿@model Nekretnine.Web.ViewModels.UgovorDodajVM
+
+@{
+    ViewData["Title"] = "Dodaj";
+}
+
+    <div class="container-fluid">
+        <a href="javascript:history.go(-1)" class="btn btn-danger"><i class="fa fa-arrow-left" data-toggle="tooltip" data-placement="top" title="Vrati se nazad"></i></a>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form asp-action="Snimi" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label class="control-label">Oznaka: </label>
+                        <input asp-for="Oznaka" class="form-control" readonly />
+                        <span asp-validation-for="Oznaka" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Vrsta ugovora: </label>
+                        <select asp-for="VrstaUgovoraID" asp-items="@Model.VrstaUgovora" class="form-control">
+                            <option value="" disabled selected hidden>Odaberite</option>
+
+                        </select>
+                        <span asp-validation-for="VrstaUgovoraID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Kupac: </label>
+                        <select asp-for="KupacID" asp-items="@Model.Kupac" class="form-control">
+                            <option value="" disabled selected hidden>Odaberite</option>
+
+                        </select>
+                        <span asp-validation-for="KupacID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Nekretnina: </label>
+                        <select asp-for="NekretninaID" asp-items="@Model.Nekretnina" class="form-control">
+                            <option value="" disabled selected hidden>Odaberite</option>
+
+                        </select>
+                        <span asp-validation-for="NekretninaID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Datum i vrijeme: </label>
+                        <input asp-for="DatumVrijeme" class="form-control" />
+                        <span asp-validation-for="DatumVrijeme" class="text-danger"></span>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="PDF" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                            <div class="custom-file">
+                                <input asp-for="PDF" class="form-control custom-file-input">
+                                <label class="custom-file-label">Choose File...</label>
+                                <span asp-validation-for="PDF" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <input type="submit" value="Snimi" class="btn btn-success" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+

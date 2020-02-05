@@ -1,0 +1,42 @@
+﻿@using Nekretnine.Web.ViewModels
+@model List<NotifikacijaIndexVM>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container-fluid">
+
+
+
+
+
+
+    @foreach (NotifikacijaIndexVM not in Model)
+    {
+
+
+
+
+    <div class="row justify-content-center">
+        @if (not.Status == "Nepročitana")
+        {
+            <div class="alert alert-primary" style="width:50%">
+                @not.Uposlenik @not.Text @not.Kupac <a asp-action="Detalji" asp-controller="Notifikacija" asp-route-NotifikacijaID="@not.NotifikacijaID" class="btn btn-primary" style="float:right">Pregledaj</a>
+                <p class="card-text text-gray-500"><small class="text-muted">@not.Datum.ToShortDateString(), @not.Datum.ToShortTimeString()</small></p>
+            </div>
+        }
+        else
+        {
+            if (DateTime.Now.Day - not.Datum.Day < 7)
+            {
+        <div class="alert alert-light" style="width:50%">
+            @not.Uposlenik @not.Text @not.Kupac 
+            <p class="card-text text-gray-500"><small class="text-muted">@not.Datum.ToShortDateString(), @not.Datum.ToShortTimeString()</small></p>
+        </div>}
+        }
+    </div>
+
+    }
+
+
+</div>

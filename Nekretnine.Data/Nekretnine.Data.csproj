@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20191125193014_novoNovo.cs" />
+    <Compile Remove="Migrations\20191125193014_novoNovo.Designer.cs" />
+    <Compile Remove="Migrations\20191125193242_Migracija.cs" />
+    <Compile Remove="Migrations\20191125193242_Migracija.Designer.cs" />
+    <Compile Remove="Migrations\20191125194143_InitialDB.cs" />
+    <Compile Remove="Migrations\20191125194143_InitialDB.Designer.cs" />
+    <Compile Remove="Migrations\20191125194644_izmjena1.cs" />
+    <Compile Remove="Migrations\20191125194644_izmjena1.Designer.cs" />
+    <Compile Remove="Migrations\20191126165150_miniIspravke.cs" />
+    <Compile Remove="Migrations\20191126165150_miniIspravke.Designer.cs" />
+    <Compile Remove="Migrations\20191126174020_novientiteti.cs" />
+    <Compile Remove="Migrations\20191126174020_novientiteti.Designer.cs" />
+    <Compile Remove="Migrations\20200113083041_SlikeNekretnineAdjustments.cs" />
+    <Compile Remove="Migrations\20200113083041_SlikeNekretnineAdjustments.Designer.cs" />
+    <Compile Remove="Migrations\20200113084659_GuidID.cs" />
+    <Compile Remove="Migrations\20200113084659_GuidID.Designer.cs" />
+    <Compile Remove="Migrations\20200113084959_ispravkaSlika.cs" />
+    <Compile Remove="Migrations\20200113084959_ispravkaSlika.Designer.cs" />
+    <Compile Remove="Migrations\20200113085247_proba.cs" />
+    <Compile Remove="Migrations\20200113085247_proba.Designer.cs" />
+    <Compile Remove="Migrations\20200113085858_Slikee.cs" />
+    <Compile Remove="Migrations\20200113085858_Slikee.Designer.cs" />
+    <Compile Remove="Migrations\20200129082735_GuidPDF.cs" />
+    <Compile Remove="Migrations\20200129082735_GuidPDF.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Select2.js" Version="4.0.11" />
+  </ItemGroup>
+
+</Project>

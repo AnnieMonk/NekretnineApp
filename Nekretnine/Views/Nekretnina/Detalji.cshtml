@@ -1,0 +1,159 @@
+﻿@using Nekretnine.Web.ViewModels
+@model NekretninaDodajVm
+
+
+@{
+    ViewData["Title"] = "Dodaj";
+
+}
+
+
+
+    <div class="container-fluid">
+        <a href="javascript:history.go(-1)" class="btn btn-danger"><i class="fa fa-arrow-left" data-toggle="tooltip" data-placement="top" title="Vrati se nazad"></i></a>
+        <a asp-action="Dodaj" asp-controller="Oglasi" asp-route-NekretninaID="@Model.NekretninaID" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Objavi na oglas"><i class="fa fa-share"></i></a>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <form>
+                    <input type="hidden" value="@Model.NekretninaID" name="NekretninaID" />
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Naziv nekretnine: </label>
+                            <div>
+
+                                <input asp-for="Naziv" class="form-control" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Kategorije: </label>
+
+                            <select asp-for="KategorijeID" asp-items="@Model.Kategorije" class="form-control" disabled>
+                                <option>---Izaberite kategoriju---</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Država: </label>
+
+                            <select asp-for="DrzavaID" asp-items="@Model.Drzava" class="form-control" disabled>
+                                <option>---Izaberite kategoriju---</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Grad: </label>
+
+                            <select asp-for="GradID" asp-items="@Model.Grad" class="form-control" disabled>
+                                <option>---Izaberite kategoriju---</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Lokacija: </label>
+                            <select asp-for="LokacijaID" asp-items="@Model.Lokacija" class="form-control" disabled>
+                                <option>---Izaberite lokaciju---</option>
+                            </select>
+                        </div>
+
+                        @*<div class="form-group col-md-3">
+                            <label>Adresa: </label>
+                            <div>
+
+                                <input asp-for="Adresa" class="form-control" readonly />
+                            </div>
+                        </div>*@
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Kvadratura: </label>
+                            <div>
+
+                                <input asp-for="Kvadratura" class="form-control" readonly />
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Broj soba: </label>
+                            <div>
+
+                                <input asp-for="BrojSoba" class="form-control" readonly />
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Cijena: </label>
+                            <div>
+
+                                <input asp-for="Cijena" class="form-control" readonly />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Opis: </label>
+                            <div>
+
+                                <input asp-for="Opis" class="form-control" readonly />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Karakteristike: </label>
+                            <select class="form-control" multiple="multiple" asp-for="@Model.KarakteristikeID" asp-items="@Model.Karakteristike" disabled>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="column">
+                            <label>Slike: </label><br />
+
+                            @foreach (var item in Model.Slike)
+                            {
+
+                                <img src="~/img/@(item.SlikeID + item.Ekstenzija)" style="width:15.5rem; height:10.5rem" />
+
+
+
+
+                            }
+                        </div>
+
+                    </div>
+                    <br />
+
+                    <a asp-action="Uredi" asp-route-NekretninaID="@Model.NekretninaID" class="btn btn-warning">Uredi</a>
+                    @*<input type="submit" value="Objavi" asp-action="Dodaj" asp-controller="Oglasi" asp-route-NekretninaID="@Model.NekretninaID" class="btn btn-info" />*@
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Upozorenje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @TempData["WarningMessage"]
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-secondary">Zatvori</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

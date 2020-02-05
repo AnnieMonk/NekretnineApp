@@ -1,0 +1,65 @@
+﻿@model Nekretnine.Web.ViewModels.UplataDodajVM
+
+@{
+    ViewData["Title"] = "Dodaj";
+}
+
+    <div class="container-fluid">
+        <a href="javascript:history.go(-1)" class="btn btn-danger"><i class="fa fa-arrow-left"></i></a>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form asp-action="Snimi">
+                    <input asp-for="KupacID" hidden />
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label class="control-label">Kupac: </label>
+                        <input asp-for="@Model.Kupac" class="form-control" readonly />
+                        <span asp-validation-for="Kupac" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Nekretnina: </label>
+                        <select asp-for="NekretninaID" asp-items="@Model.Nekretnina" class="form-control">
+                            <option value="" disabled selected hidden>Odaberite</option>
+
+                        </select>
+                        <span asp-validation-for="NekretninaID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Datum uplate: </label>
+                        <input type="date" asp-for="DatumUplate" class="form-control" />
+                        <span asp-validation-for="DatumUplate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Ugovor sa oznakom: </label>
+                        <select asp-for="UgovorID" asp-items="@Model.OznakaUgovora" class="form-control">
+                            <option value="" disabled selected hidden>Odaberite</option>
+
+                        </select>
+                        <span asp-validation-for="UgovorID" class="text-danger"></span>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label class="control-label" >Mjesečna rata ili cijeli iznos: </label>
+                        <input asp-for="MjesecnaRata" class="form-control" data-toggle="tooltip" data-placement="top" title="Ukoliko kupac ne plaća na rate, unesite cijeli iznos" />
+                        <span asp-validation-for="MjesecnaRata" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Način plaćanja: </label>
+                        <select asp-for="NacinPlacanjaID" asp-items="@Model.NacinPlacanja" class="form-control">
+                            <option value="" disabled selected hidden>Odaberite</option>
+
+                        </select>
+                        <span asp-validation-for="NacinPlacanjaID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Snimi" class="btn btn-success" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+

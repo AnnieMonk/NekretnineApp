@@ -1,0 +1,98 @@
+﻿@model Nekretnine.Web.ViewModels.UplataIndexVM
+
+@{
+    ViewData["Title"] = "IndexUplate";
+}
+
+
+
+<div class="container-fluid">
+    <div class="justify-content-center">
+
+
+        <a class="btn btn-primary" asp-action="Dodaj" asp-controller="Uplata" asp-route-KupacID="@Model.KupacID"><i class="fa fa-plus"></i> Novi unos</a>
+        <br />
+        <br />
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 bg-gradient-primary">
+
+                <h6 class="m-0 font-weight-bold text-white ">Uplate od @Model.Kupac</h6>
+
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Nekretnina</th>
+                                <th>Ukupan iznos (bez PDV) / (sa PDV)</th>
+                                <th>Mjesečna rata</th>
+                                <th>Datum uplate</th>
+                                <th>Način plaćanja</th>
+                                <th>Oznaka ugovora</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var x in Model.rows)
+                            {
+                                if (x.Kasnjenje == true)
+                                {
+                                    <tr class="alert alert-dark">
+                                        <td>@x.Nekretnina</td>
+                                        <td>@x.UkupanIznosBezPDV / @x.UkupanIznosPDV</td>
+                                        <td>@x.MjesecnaRata</td>
+                                        <td>@x.DatumUplate</td>
+                                        <td>@x.NacinPlacanja</td>
+                                        <td>@x.OznakaUgovora</td>
+
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td>@x.Nekretnina</td>
+                                        <td>@x.UkupanIznosBezPDV / @x.UkupanIznosPDV</td>
+                                        <td>@x.MjesecnaRata</td>
+                                        <td>@x.DatumUplate</td>
+                                        <td>@x.NacinPlacanja</td>
+                                        <td>@x.OznakaUgovora</td>
+
+                                    </tr>
+
+                                }
+                            }
+                        </tbody>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Upozorenje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @TempData["WarningMessage"]
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-secondary">Zatvori</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

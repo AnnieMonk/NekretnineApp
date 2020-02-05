@@ -1,0 +1,60 @@
+﻿@using Nekretnine.Web.ViewModels
+@model OglasiDetaljiVM
+@{
+    ViewData["Title"] = "Detalji";
+}
+    <div class="container-fluid ">
+        <a href="javascript:history.go(-1)" class="btn btn-danger"><i class="fa fa-arrow-left" data-toggle="tooltip" data-placement="top" title="Vrati se nazad"></i></a>
+        <h1 class="text-center">Detalji oglasa za:<b class="text-info"> @Model.NazivNekretnine</b></h1>
+        <br />
+        <br />
+        <div class="row justify-content-center">
+            <div class="form-group col-md-6 ">
+
+
+                <div class="form-group">
+                    @if (Model.Aktivan == true)
+                    {
+                        <label class="control-label">Aktivan:</label> <i class="fa fa-check"></i>
+                    }
+                    else
+                    {
+                        <label class="control-label">Aktivan:</label> <i class="fa fa-times"></i>
+
+                    }
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Vrsta oglasa:</label><br />
+                    <input asp-for="vrstaOglasa" readonly class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Datum objave:</label><br />
+                    <input asp-for="DatumObjave" readonly class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Objavio:</label><br />
+                    <input asp-for="UposlenikImePrezime" readonly class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Naziv nekretnine:</label>
+                    <div class="row">
+
+                        <div class="form-group col-md-9">
+
+                            <input asp-for="NazivNekretnine" readonly class="form-control" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <a asp-action="Detalji" asp-controller="Nekretnina" asp-route-NekretninaID="@Model.NekretninaID" class="btn btn-info">Pregledaj</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Cijena:</label><br />
+                    <input asp-for="Cijena" readonly class="form-control" />
+                </div>
+
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,78 @@
+﻿@using Nekretnine.Web.ViewModels
+@model NekretninePrikazVM
+@{
+    ViewData["Title"] = "Prikazi";
+}
+
+
+<div class="container-fluid">
+
+    <a class="btn btn-primary" asp-action="Dodaj" asp-controller="Nekretnina"><i class="fa fa-plus"></i> Novi unos</a>
+    <br />
+    <br />
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 bg-gradient-primary">
+            <h6 class="m-0 font-weight-bold text-white ">Nekretnine rekordi</h6>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                    <thead>
+                        <tr>
+                            <th>Naziv</th>
+                            <th>Kategorija</th>
+                            <th>Akcija</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (NekretninePrikazVM.Row x in Model.rows)
+                        {
+                            <tr>
+                                <td>@x.Naziv</td>
+                                <td>@x.Kategorija</td>
+                                <td>
+                                    <a class="btn btn-danger" asp-action="Obrisi" asp-controller="Nekretnina" asp-route-NekretninaID="@x.NekretninaID"><i class="fa fa-minus"></i> Obriši</a>
+                                    <a class="btn btn-warning" asp-action="Uredi" asp-controller="Nekretnina" asp-route-NekretninaID="@x.NekretninaID"><i class="fa fa-pen"></i> Uredi</a>
+                                    <a class="btn btn-info" asp-action="Detalji" asp-controller="Nekretnina" asp-route-NekretninaID="@x.NekretninaID"><i class="fa fa-eye"></i> Detalji</a>
+
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Upozorenje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @TempData["WarningMessage"]
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-secondary">Zatvori</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+

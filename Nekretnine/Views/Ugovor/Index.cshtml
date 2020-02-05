@@ -1,0 +1,81 @@
+﻿@model Nekretnine.Web.ViewModels.UgovorPrikazVM
+
+@{
+    ViewData["Title"] = "Index";
+    
+}
+
+    <div class="container-fluid">
+
+        <a class="btn btn-primary" asp-action="Dodaj" asp-controller="Ugovor"><i class="fa fa-plus"></i> Novi unos</a>
+        <div style="float:right">
+            <a class="btn btn-light" href="~/files/Ugovor-o-prodaji-stana-primjer.pdf"><i class="fa fa-download"></i> Template prodaja</a>
+
+            <a class="btn btn-light" href="~/files/Ugovor-o-zakupu-stana-primjer.pdf"><i class="fa fa-download"></i> Template najam</a>
+        </div>
+
+
+        <br />
+        <br />
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 bg-gradient-primary">
+
+                <h6 class="m-0 font-weight-bold text-white ">Završeni ugovori</h6>
+
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Oznaka</th>
+                                <th>Datum</th>
+                                <th>Nekretnina</th>
+                                <th>Vrsta</th>
+                                <th>Kupac</th>
+                                <th>Akcija</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Nekretnine.Web.ViewModels.UgovorPrikazVM.Row x in Model.rows)
+                            {
+                                <tr>
+                                    <td>@x.Oznaka</td>
+                                    <td>@x.DatumVrijeme</td>
+                                    <td>@x.Nekretnina</td>
+                                    <td>@x.VrstaUgovora</td>
+                                    <td>@x.Kupac</td>
+                                    <td>
+                                        <a asp-action="Pregled" asp-route-UgovorID="@x.UgovorID" class="btn btn-info">Pregled</a>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Upozorenje</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @TempData["WarningMessage"]
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Zatvori</button>
+
+                </div>
+            </div>
+        </div>
+    </div>

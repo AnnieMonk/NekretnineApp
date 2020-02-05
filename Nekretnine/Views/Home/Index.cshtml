@@ -1,0 +1,187 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+
+    var error_poruka = TempData["errorMessage"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+
+}
+
+
+
+    <div class="container-fluid" style="text-align:center; padding-left:4.5rem; padding-right:4.5rem">
+        <div class="row">
+            <div class="col-xl-12 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <i class="fa fa-newspaper fa-2x text-gray-300" aria-hidden="true"></i>
+                                <a class="h5 font-weight-bold text-primary text-uppercase mb-1" asp-action="Prikazi" asp-controller="Oglasi" asp-route-AgentID="1">Oglasi </a>
+
+                            </div>
+
+                        </div>
+                        <div class="float-right badge badge-info"> @ViewData["brojOglasa"] </div>
+
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <a class="h5 font-weight-bold text-primary text-uppercase mb-1" asp-action="Prikazi" asp-controller="Nekretnina" asp-route-AgentID="1">Prikaži nekretnine</a>
+
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa fa-newspaper-o  fa-2x text-gray-300" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-md-4 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+
+
+                            <div class="col mr-2">
+
+                                <i class="fa fa-building fa-2x text-gray-300" aria-hidden="true"></i>
+
+                                <a class="h5 font-weight-bold text-primary text-uppercase mb-1" href="/Oglasi/Prikazi?pretraga=Apartman">Apartmani </a>
+
+                            </div>
+
+
+                        </div>
+                        <div class="float-right badge badge-info"> @ViewData["brojApartmana"] </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4 mb-4">
+                <div class="card border-left-dark shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+
+                                <i class="fa fa-hotel fa-2x text-gray-300" aria-hidden="true"></i>
+
+                                <a class="h5 font-weight-bold text-primary text-uppercase mb-1" href="/Oglasi/Prikazi?pretraga=Stan">Stanovi </a>
+
+                            </div>
+
+                        </div>
+                        <div class="float-right badge badge-info"> @ViewData["brojStanova"] </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4 mb-4">
+                <div class="card border-left-danger shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+
+                                <i class="fa fa-tree fa-2x text-gray-300" aria-hidden="true"></i>
+
+                                <a class="h5 font-weight-bold text-primary text-uppercase mb-1" href="/Oglasi/Prikazi?pretraga=Zemljište">Zemljišta </a>
+
+                            </div>
+
+                        </div>
+                        <div class="float-right badge badge-info"> @ViewData["brojZemljista"] </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-md-4 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+
+                                <i class="fa fa-home fa-2x text-gray-300" aria-hidden="true"></i>
+
+                                <a class="h5 font-weight-bold text-primary text-uppercase mb-1" href="/Oglasi/Prikazi?pretraga=Kuća">Kuće </a>
+
+                            </div>
+
+                        </div>
+                        <div class="float-right badge badge-info"> @ViewData["brojKuca"] </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-4 mb-4">
+                <div class="card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+
+                                <i class="fa fa-home fa-2x text-gray-300" aria-hidden="true"></i>
+
+                                <a class="h5 font-weight-bold text-primary text-uppercase mb-1" href="/Oglasi/Prikazi?pretraga=Vikendica">Vikendice </a>
+
+                            </div>
+
+                        </div>
+                        <div class="float-right badge badge-info"> @ViewData["brojVikendica"] </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4 mb-4">
+                <div class="card border-left-light shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+
+                                <i class="fa fa-briefcase fa-2x text-gray-300" aria-hidden="true"></i>
+
+                                <a class="h5 font-weight-bold text-primary text-uppercase mb-1" href="/Oglasi/Prikazi?pretraga=Poslovni prostor">Poslovni prostori </a>
+
+                            </div>
+
+                        </div>
+                        <div class="float-right badge badge-info"> @ViewData["brojPprostora"] </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="target" class="display-label">
+                <ul></ul>
+            </div>
+
+            @if (error_poruka != null)
+            {
+                <br />
+                <div class="alert alert-danger">
+                    @error_poruka
+                </div>
+            }
+        </div>
+
+        
+
+    </div>
+
+
+
+
+
+    

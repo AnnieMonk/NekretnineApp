@@ -1,0 +1,34 @@
+﻿@using Nekretnine.Web.ViewModels
+@model  FormaKupacVM_temp
+@{
+    ViewData["Title"] = "Forma";
+    Layout = "~/Views/Shared/_LayoutKupac.cshtml";
+}
+
+<h1>Ispunite formu</h1>
+
+<div class="row justify-content-center">
+    <div class="container-fluid">
+        <div id="cAlert" class="alert alert-success" style="display:none;" role="alert">
+            Uspješno ste poslali formu!
+        </div>
+        <form>
+            <input hidden asp-for="ObilazakID" />
+            <label class="control-label">Kupac: </label><br />
+            <input asp-for="KupacKorisnickoIme" class="form-control" readonly /><br />
+            <label class="control-label">Željeni datum obilaska: </label><br />
+            <input asp-for="DatumObilaska" class="form-control" type="datetime-local" /><br />
+            <label class="control-label">Željeni grad obilaska: </label><br />
+            <select asp-for="GradID" asp-items="@Model.Grad" class="form-control"></select><br />
+            <label class="control-label">Željena adresa obilaska: </label><br />
+            <input asp-for="Adresa" class="form-control" placeholder="Adresa" /><br />
+            <label class="control-label">Željena nekretnina: </label><br />
+            <select asp-for="NekretninaID" asp-items="@Model.Nekretnine" class="form-control"></select><br />
+            <label class="control-label">Agent: </label><br />
+            <select asp-for="AgentID" asp-items="@Model.Agenti" data-userid="@Model.AgentID" class="form-control"></select><br />
+
+            <input type="submit" value="Pošalji" class="btn btn-primary snimiButton" />
+        </form>
+    </div>
+</div>
+

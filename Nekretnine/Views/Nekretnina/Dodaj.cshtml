@@ -1,0 +1,171 @@
+﻿@using Nekretnine.Web.ViewModels
+@model NekretninaDodajVm
+@{
+    ViewData["Title"] = "Dodaj";
+}
+
+
+<div class="row justify-content-center">
+    <div class="container-fluid">
+        <a href="/Nekretnina/Prikazi" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Vrati se nazad"><i class="fa fa-arrow-left"></i></a>
+        @if (Model.NekretninaID != 0)
+        {
+            <a asp-action="Dodaj" asp-controller="Oglasi" asp-route-NekretninaID="@Model.NekretninaID" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Objavi na oglas"><i class="fa fa-share"></i></a>
+        }
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form asp-action="Snimi" asp-controller="Nekretnina" enctype="multipart/form-data">
+                    <input type="hidden" value="@Model.NekretninaID" name="NekretninaID" />
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Naziv nekretnine: </label>
+                            <div>
+
+                                <input asp-for="Naziv" class="form-control" />
+                                <span asp-validation-for="Naziv" class="text-danger field-validation-error"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Kategorije: </label>
+
+                            <select asp-for="KategorijeID" asp-items="@Model.Kategorije" class="form-control">
+                                <option value="" disabled selected hidden>Odaberite</option>
+                            </select>
+                            <span asp-validation-for="KategorijeID" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Država: </label>
+
+                            <select asp-for="DrzavaID" asp-items="@Model.Drzava" class="form-control">
+                                <option value="" disabled selected hidden>Odaberite</option>
+                            </select>
+                            <span asp-validation-for="DrzavaID" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Grad: </label>
+
+                            <select asp-for="GradID" asp-items="@Model.Grad" class="form-control">
+                                <option value="" disabled selected hidden>Odaberite</option>
+                            </select>
+                            <span asp-validation-for="GradID" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Lokacija: </label>
+                            <select asp-for="LokacijaID" asp-items="@Model.Lokacija" class="form-control">
+                                <option value="" disabled selected hidden>Odaberite</option>
+                            </select>
+                            <span asp-validation-for="LokacijaID" class="text-danger"></span>
+                        </div>
+
+                        @*<div class="form-group col-md-3">
+                            <label>Adresa: </label>
+                            <div>
+
+                                <input asp-for="Adresa" class="form-control" />
+                                <span asp-validation-for="Adresa" class="text-danger"></span>
+                            </div>
+                        </div>*@
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Kvadratura: </label>
+                            <div>
+
+                                <input asp-for="Kvadratura" class="form-control" />
+                                <span asp-validation-for="Kvadratura" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Broj soba: </label>
+                            <div>
+
+                                <input asp-for="BrojSoba" class="form-control" />
+                                <span asp-validation-for="BrojSoba" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Cijena: </label>
+                            <div>
+
+                                <input asp-for="Cijena" class="form-control" />
+                                <span asp-validation-for="Cijena" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Opis: </label>
+                            <div>
+
+                                <textarea asp-for="Opis" class="form-control"></textarea>
+                                <span asp-validation-for="Opis" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Karakteristike: </label>
+                            <select class="js-example-basic-multiple form-control" id="mySelect2" multiple="multiple" asp-for="@Model.KarakteristikeID" asp-items="@Model.Karakteristike">
+                            </select>
+                            <span asp-validation-for="KarakteristikeID" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    @if (Model.NekretninaID == 0)
+                    {
+                        <div class="form-group row">
+
+                            <div class="col-sm-10">
+
+                                <div class="editor-label">
+                                    <label>Files:</label>
+                                </div>
+                                <div class="editor-field">
+                                    <input type="file" name="file" multiple="multiple" />
+
+                                </div>
+                                <span asp-validation-for="Slike" class="text-danger"></span>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group row">
+
+                            <div class="col-sm-10">
+                                <div class="editor-field">
+                                    <input type="file" name="file" multiple="multiple" />
+
+                                    <ul class="attachment" style="list-style-type:none">
+                                        <br />
+                                        @foreach (var item in Model.Slike)
+                                        {
+
+                                            <li id="rezultatBrisanja">
+                                                <img src="~/img/@(item.SlikeID + item.Ekstenzija)" class="img-thumbnail " style="width:10%" />
+
+                                                <a class="title">@item.MyImage</a>
+                                                <a href="javascript:void(0);" data-id="@item.SlikeID" class="deleteItem">Obriši</a>
+                                            </li>
+
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <input type="submit" value="Snimi" asp-action="Snimi" asp-controller="Nekretnina" class="btn btn-success" />
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
