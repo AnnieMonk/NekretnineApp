@@ -14,3 +14,5 @@ Technologies:
 Entity Framework Core, 
 Asp.Net Core MVC
 
+Note: This is a school project
+
