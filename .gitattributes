@@ -12,6 +12,8 @@
 ###############################################################################
 #*.cs     diff=csharp
 #*.rb linguist-language=C#
+#*.css linguist-detectable=false
+#*.js linguist-detectable=true
 ###############################################################################
 # Set the merge driver for project and solution files
 #
