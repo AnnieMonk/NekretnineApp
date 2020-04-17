@@ -10,7 +10,12 @@ Customer controller now just has a form which demonstrates these arrangement. Wh
 
 Notification system implemented using SignalR Core
 
-Used C# with Entity Framework Core and Asp.Net Core MVC
+Used C# with Entity Framework Core and Asp.Net Core MVC. I did this with CODE FIRST principle, so before running the app, do the migrations.
 
 Note: This is a school project
-Use your own appsettings.json
+
+Add connection string to appsettings.json file, and reference it in Startup.cs (ConfigureServices) like this:
+
+```
+services.AddDbContext<MyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("insertConnectionString")));
+```
